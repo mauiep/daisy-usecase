@@ -1,21 +1,17 @@
+import { NextRequest } from "next/server"
 import { participants } from "@/lib/mock-db"
 
+type Params = { id: string }
+
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
+  _req: NextRequest,
+  { params }: { params: Promise<Params> }
 ) {
   try {
-    const workshopParticipants = participants.filter(
-      (p) => p.workshopId === params.id
-    )
-
-    if (!workshopParticipants.length) {
-      return Response.json([])
-    }
-
-    return Response.json(workshopParticipants)
-
-  } catch (error) {
-    return new Response("Failed to fetch participants", { status: 500 })
+    const { id } = await params
+    const list = participants.filter((p) => p.workshopId === id)
+    return Response.json(list)
+  } catch (e) {
+    return Response.json({ error: "Failed to fetch participants" }, { status: 500 })
   }
 }
