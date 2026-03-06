@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { getWorkshops } from "@/lib/api"
 import WorkshopCard from "@/components/workshop-card"
+import Image from "next/image"
 
 export default function Home() {
   const [workshops, setWorkshops] = useState([])
@@ -18,13 +19,23 @@ export default function Home() {
 
   return (
     <main className="mx-auto min-h-screen max-w-md px-4 py-6">
-      <header className="mb-6">
-        <p className="text-sm font-medium text-black/60">Daisy Pro</p>
-        <h1 className="text-2xl font-semibold tracking-tight text-black">
-          Today’s workshops
-        </h1>
-      </header>
 
+	<header className="mb-6 flex flex-col gap-3">
+  		<div className="flex items-center">
+    	    <Image
+      		    src="/daisy-logo.svg"
+                alt="Daisy"
+                width={120}
+                height={32}
+                priority
+                className="h-8 w-auto"
+            />
+        </div>
+
+        <h1 className="text-2xl font-semibold tracking-tight text-black">
+            Ateliers du jour
+        </h1>
+    </header>
       {loading && <p className="text-sm text-black/70">Loading workshops...</p>}
       {error && <p className="text-sm text-[#F24E3E]">Error loading workshops</p>}
       {!loading && !error && workshops.length === 0 && (
