@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
-import { getParticipants } from "@/lib/api"
+import { getParticipants, getWorkshop } from "@/lib/api"
 import ParticipantRow from "@/components/participant-row"
 import Image from "next/image"
 
@@ -23,9 +23,9 @@ export default function WorkshopPage() {
       .catch(() => setError(true))
       .finally(() => setLoading(false))
 
-      getWorkshop(workshopId)
-   	  .then(setWorkshop)
-      .catch(() => {})
+    getWorkshop(workshopId)
+   	.then(setWorkshop)
+   	.catch(() => {})
   }, [workshopId])
 
   return (
