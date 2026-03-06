@@ -23,7 +23,7 @@ export default function Home() {
 	<header className="mb-6 flex flex-col gap-3">
   		<div className="flex items-center">
     	    <Image
-      		    src="/daisy-logo.svg"
+      		    src="/daisy-logo.png"
                 alt="Daisy"
                 width={120}
                 height={32}
