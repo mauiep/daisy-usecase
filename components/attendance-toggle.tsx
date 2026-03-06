@@ -27,7 +27,7 @@ export default function AttendanceToggle({ participant, workshopId }: any) {
         onClick={() => update("present")}
         className={`min-h-10 rounded-full px-3 text-sm font-medium transition ${
           status === "present"
-            ? "bg-green-600"
+            ? "bg-green-500 text-white"
             : "bg-black/5 text-black"
         }`}
       >

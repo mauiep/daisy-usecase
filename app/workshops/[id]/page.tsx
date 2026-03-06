@@ -22,6 +22,10 @@ export default function WorkshopPage() {
       .then((data) => setParticipants(data))
       .catch(() => setError(true))
       .finally(() => setLoading(false))
+
+      getWorkshop(workshopId)
+   	  .then(setWorkshop)
+      .catch(() => {})
   }, [workshopId])
 
   return (
