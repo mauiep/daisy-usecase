@@ -16,17 +16,28 @@ export default function Home() {
       .finally(() => setLoading(false))
   }, [])
 
-  if (loading) return <p className="p-4">Loading workshops...</p>
-  if (error) return <p className="p-4">Error loading workshops</p>
-  if (!workshops.length) return <p className="p-4">No workshops today</p>
-
   return (
-    <main className="p-4 space-y-4">
-      <h1 className="text-xl font-bold">Today's workshops</h1>
+    <main className="mx-auto min-h-screen max-w-md px-4 py-6">
+      <header className="mb-6">
+        <p className="text-sm font-medium text-black/60">Daisy Pro</p>
+        <h1 className="text-2xl font-semibold tracking-tight text-black">
+          Today’s workshops
+        </h1>
+      </header>
 
-      {workshops.map((w: any) => (
-        <WorkshopCard key={w.id} workshop={w} />
-      ))}
+      {loading && <p className="text-sm text-black/70">Loading workshops...</p>}
+      {error && <p className="text-sm text-[#F24E3E]">Error loading workshops</p>}
+      {!loading && !error && workshops.length === 0 && (
+        <div className="rounded-2xl border border-black/10 bg-white p-4 text-sm">
+          No workshops today
+        </div>
+      )}
+
+      <div className="space-y-3">
+        {workshops.map((w: any) => (
+          <WorkshopCard key={w.id} workshop={w} />
+        ))}
+      </div>
     </main>
   )
 }

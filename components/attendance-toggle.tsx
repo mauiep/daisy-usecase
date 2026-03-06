@@ -8,16 +8,16 @@ export default function AttendanceToggle({ participant, workshopId }: any) {
   const [loading, setLoading] = useState(false)
 
   async function update(newStatus: "present" | "absent") {
-    setStatus(newStatus) // optimistic
+    setStatus(newStatus)
     setLoading(true)
 
     try {
       await updateAttendance(workshopId, participant.id, newStatus)
     } catch {
       alert("Failed to update attendance")
+    } finally {
+      setLoading(false)
     }
-
-    setLoading(false)
   }
 
   return (
@@ -25,25 +25,25 @@ export default function AttendanceToggle({ participant, workshopId }: any) {
       <button
         disabled={loading}
         onClick={() => update("present")}
-        className={`px-3 py-1 rounded ${
+        className={`min-h-10 rounded-full px-3 text-sm font-medium transition ${
           status === "present"
-            ? "bg-green-500 text-white"
-            : "bg-gray-200"
+            ? "bg-[#800080] text-white"
+            : "bg-black/5 text-black"
         }`}
       >
-        ✓
+        Present
       </button>
 
       <button
         disabled={loading}
         onClick={() => update("absent")}
-        className={`px-3 py-1 rounded ${
+        className={`min-h-10 rounded-full px-3 text-sm font-medium transition ${
           status === "absent"
-            ? "bg-red-500 text-white"
-            : "bg-gray-200"
+            ? "bg-[#F24E3E] text-white"
+            : "bg-black/5 text-black"
         }`}
       >
-        ✕
+        Absent
       </button>
     </div>
   )

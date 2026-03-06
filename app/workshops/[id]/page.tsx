@@ -16,26 +16,34 @@ export default function WorkshopPage() {
   useEffect(() => {
     if (!workshopId) return
 
-    setLoading(true)
-    setError(false)
-
     getParticipants(workshopId)
-      .then((data) => setParticipants(Array.isArray(data) ? data : []))
+      .then((data) => setParticipants(data))
       .catch(() => setError(true))
       .finally(() => setLoading(false))
   }, [workshopId])
 
-  if (loading) return <p className="p-4">Loading participants...</p>
-  if (error) return <p className="p-4">Error loading participants</p>
-  if (!participants.length) return <p className="p-4">No participants</p>
-
   return (
-    <main className="p-4 space-y-4">
-      <h1 className="text-xl font-bold">Participants</h1>
+    <main className="mx-auto min-h-screen max-w-md px-4 py-6">
+      <header className="mb-6">
+        <p className="text-sm font-medium text-black/60">Workshop</p>
+        <h1 className="text-2xl font-semibold tracking-tight text-black">
+          Participants
+        </h1>
+      </header>
 
-      {participants.map((p: any) => (
-        <ParticipantRow key={p.id} participant={p} workshopId={workshopId} />
-      ))}
+      {loading && <p className="text-sm text-black/70">Loading participants...</p>}
+      {error && <p className="text-sm text-[#F24E3E]">Error loading participants</p>}
+      {!loading && !error && participants.length === 0 && (
+        <div className="rounded-2xl border border-black/10 bg-white p-4 text-sm">
+          No participants
+        </div>
+      )}
+
+      <div className="space-y-3">
+        {participants.map((p: any) => (
+          <ParticipantRow key={p.id} participant={p} workshopId={workshopId} />
+        ))}
+      </div>
     </main>
   )
 }
