@@ -21,7 +21,7 @@ export default function Home() {
     <main className="mx-auto min-h-screen max-w-md px-4 py-6">
 
 	<header className="mb-6 flex flex-col gap-3">
-  		<div className="flex items-center">
+      	<div className="flex items-center">
     	    <Image
       		    src="/daisy-logo.png"
                 alt="Daisy"

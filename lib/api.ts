@@ -4,6 +4,12 @@ export async function getWorkshops() {
   return res.json()
 }
 
+export async function getWorkshop(workshopId: string) {
+  const res = await fetch(`/api/workshops/${workshopId}`)
+  if (!res.ok) throw new Error("Failed to load workshop")
+  return res.json()
+}
+
 export async function getParticipants(workshopId: string) {
   const res = await fetch(`/api/workshops/${workshopId}/participants`)
   if (!res.ok) throw new Error("Failed to load participants")
