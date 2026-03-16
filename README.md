@@ -44,7 +44,7 @@ PATCH /api/workshops/:id/participants/:participantId/attendance
 
 Pour les composants React :
 - WorkshopCard : affiche un résumé de l'atelier (titre, heure, compteur de participants) et permet de garder la liste des ateliers simple et réutilisable.
-- ParticipantRow : représente un seul participant avec son nom.
+- ParticipantRow : représente un seul participant avec son nom et son AttendanceToggle.
 - AttendanceToggle : contient les boutons de présence et permet d'isoler la logique d'appel API pour modifier celle-ci.
 
 Au niveau UI j'ai visé le rendu mobile en premier lieu, insistant sur une vue verticale et des boutons larges.
