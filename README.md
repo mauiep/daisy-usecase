@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Ce projet est un test technique fait en [Next.js](https://nextjs.org).
 
-## Getting Started
+## Pour commencer
 
-First, run the development server:
+Le projet se lance avec le gestionnaire de packet javascript installé :
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm rundev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrez l'url [http://localhost:3000](http://localhost:3000) dans votre navigateur pour voir le résultat.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Le projet est également hébergé avec vercel a l'adresse suivante : [https://daisy-usecase.vercel.app/](https://daisy-usecase.vercel.app/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Problème
 
-## Learn More
+J'ai choisi l'étude de cas A : 
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+Un artiste arrive le matin, ouvre Daisy Pro, et veut marquer en 30 secondes qui est présent dans son atelier du jour.
+Implémente :
+→ la liste des ateliers du jour (créneau, studio, remplissage)
+→ le détail d'un atelier avec la liste des participants
+→ l'action marquer présent / absent.
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Stack techniques
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Next.js (Routeur)
+- React
+- TailwindCSS
+- Routes API Next pour le backend "fictif"
 
-## Deploy on Vercel
+## Choix
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+J'ai choisi d'utiliser une maquette simulant une base de donnée accessible via ces routes API :
+```
+GET /api/workshops
+GET /api/workshops/:id
+GET /api/workshops/:id/participants
+PATCH /api/workshops/:id/participants/:participantId/attendance
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Pour les composants React :
+- WorkshopCard : affiche un résumé de l'atelier (titre, heure, compteur de participants) et permet de garder la liste des ateliers simple et réutilisable.
+- ParticipantRow : représente un seul participant avec son nom.
+- AttendanceToggle : contient les boutons de présence et permet d'isoler la logique d'appel API pour modifier celle-ci.
+
+Au niveau UI j'ai visé le rendu mobile en premier lieu, insistant sur une vue verticale et des boutons larges.
+
+J'ai repris le code couleur de Daisy : 
+- Violet #800080 (logo / nombre de participants)
+- Corail #F24E3E (jauge de présence)
+- Crème #FCF8E8 (fond)
+- Noir (texte)
+
+Les données mockées ainsi que les routes API permettent de simuler un backend réaliste et facilitera une potentielle intégration de cette feature.
